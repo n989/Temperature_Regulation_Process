@@ -23,22 +23,16 @@ for kp, ki, kd in values:
 
     current_temp = 75
     target_temp = 50
-    threshold = 1e-2
+    threshold = 1e-2 
 
     room = Room(Ti=current_temp)
 
-    errors = []
     temps = []
-    converge_point = []
 
     for i in range(50):
         
         temps.append(current_temp)
         error = target_temp - current_temp
-        errors.append(error)
-
-        if abs(error) < threshold and not converge_point:
-            converge_point.append([i, current_temp])
 
         theta = controller.step(error)
         current_temp = room.step(theta)
